@@ -62,9 +62,6 @@
       font-size: .85rem;
       line-height: 1.5;
       margin: 0;
-      white-space: pre-wrap; 
-      word-break: break-word;  
-      overflow-x: hidden;   
     }
     pre code {
       font-family: ui-monospace, "SF Mono", Consolas, monospace;
@@ -75,6 +72,18 @@
     .fn { color: #d2a8ff; }
     .cmt { color: #8b949e; font-style: italic; }
     .num { color: #79c0ff; }
+    
+    html, body {
+      scrollbar-width: none;   
+      -ms-overflow-style: none; 
+    }
+
+    html::-webkit-scrollbar,
+    body::-webkit-scrollbar {
+      width: 0;
+      height: 0;
+      display: none;       
+    }
   </style>
 </head>
 <body>
