@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>binary search</title>
+  <link rel="icon" type="image/svg+xml" href="../../../favicon.svg" />
+  <style>
+    :root {
+      --bg: #0d1117;
+      --border: #30363d;
+      --text: #e6edf3;
+      --muted: #8b949e;
+      --accent: #58a6ff;
+      --code-bg: #0b0f14;
+    }
+    * { box-sizing: border-box; }
+    body {
+      font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 2rem 1rem 4rem;
+      line-height: 1.6;
+      background: var(--bg);
+      color: var(--text);
+    }
+    a { color: var(--accent); text-decoration: none; }
+
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: .35rem;
+      padding: .4rem .8rem;
+      margin-bottom: 2rem;
+      font-size: .9rem;
+      color: var(--muted);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      transition: all .15s ease;
+    }
+    .back-link:hover {
+      color: var(--text);
+      border-color: var(--accent);
+      background: #161b22;
+    }
+
+    header {
+      margin-bottom: 2.5rem;
+      text-align: center;
+    }
+    header h1 {
+      font-size: clamp(1.8rem, 4vw, 2.5rem);
+      margin: 0 0 .5rem;
+    }
+
+    pre {
+      background: var(--code-bg);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 1rem 1.25rem;
+      overflow-x: auto;
+      font-size: .85rem;
+      line-height: 1.5;
+      margin: 0;
+    }
+    pre code {
+      font-family: ui-monospace, "SF Mono", Consolas, monospace;
+      color: var(--text);
+    }
+    .kw { color: #ff7b72; }
+    .str { color: #a5d6ff; }
+    .fn { color: #d2a8ff; }
+    .cmt { color: #8b949e; font-style: italic; }
+    .num { color: #79c0ff; }
+  </style>
+</head>
+<body>
+  <a class="back-link" href="../index.html">back</a>
+
+  <header>
+    <h1>binary search</h1>
+  </header>
+
+<pre><code><span class="cmt">// lower_bound — первый индекс, где a[i] &gt;= target
+// upper_bound — первый индекс, где a[i] &gt;  target</span>
+
+<span class="kw">int</span> <span class="fn">lowerBound</span>(<span class="kw">const</span> vector&lt;<span class="kw">int</span>&gt;&amp; a, <span class="kw">int</span> target) {
+    <span class="kw">int</span> l = <span class="num">0</span>, r = (<span class="kw">int</span>)a.size();
+    <span class="kw">while</span> (l &lt; r) {
+        <span class="kw">int</span> md = l + (r - l) / <span class="num">2</span>;
+        <span class="kw">if</span> (a[md] &lt; target) l = md + <span class="num">1</span>;
+        <span class="kw">else</span>                r = md;
+    }
+    <span class="kw">return</span> l;
+}
+
+<span class="kw">int</span> <span class="fn">upperBound</span>(<span class="kw">const</span> vector&lt;<span class="kw">int</span>&gt;&amp; a, <span class="kw">int</span> target) {
+    <span class="kw">int</span> l = <span class="num">0</span>, r = (<span class="kw">int</span>)a.size();
+    <span class="kw">while</span> (l &lt; r) {
+        <span class="kw">int</span> md = l + (r - l) / <span class="num">2</span>;
+        <span class="kw">if</span> (a[md] &lt;= target) l = md + <span class="num">1</span>;
+        <span class="kw">else</span>                 r = md;
+    }
+    <span class="kw">return</span> l;
+}
+
+<span class="kw">int</span> <span class="fn">main</span>() {
+    vector&lt;<span class="kw">int</span>&gt; a = {<span class="num">1</span>, <span class="num">3</span>, <span class="num">5</span>, <span class="num">7</span>, <span class="num">7</span>, <span class="num">7</span>, <span class="num">7</span>, <span class="num">7</span>, <span class="num">7</span>, <span class="num">7</span>, <span class="num">9</span>, <span class="num">11</span>, <span class="num">13</span>, <span class="num">15</span>};
+    <span class="cmt">//               0  1  2  3  4  5  6  7  8  9  10 11  12  13</span>
+
+    cout &lt;&lt; <span class="str">"size = "</span> &lt;&lt; a.size() &lt;&lt; <span class="str">"\n\n"</span>;
+
+    cout &lt;&lt; <span class="str">"lowerBound(7) = "</span> &lt;&lt; <span class="fn">lowerBound</span>(a, <span class="num">7</span>) &lt;&lt; <span class="str">"\n"</span>; <span class="cmt">// 3</span>
+    cout &lt;&lt; <span class="str">"upperBound(7) = "</span> &lt;&lt; <span class="fn">upperBound</span>(a, <span class="num">7</span>) &lt;&lt; <span class="str">"\n"</span>; <span class="cmt">// 10</span>
+    cout &lt;&lt; <span class="str">"count(7)      = "</span> &lt;&lt; <span class="fn">upperBound</span>(a, <span class="num">7</span>) - <span class="fn">lowerBound</span>(a, <span class="num">7</span>) &lt;&lt; <span class="str">"\n\n"</span>; <span class="cmt">// 7</span>
+
+    cout &lt;&lt; <span class="str">"lowerBound(4)  = "</span> &lt;&lt; <span class="fn">lowerBound</span>(a, <span class="num">4</span>)  &lt;&lt; <span class="str">"\n"</span>; <span class="cmt">// 2</span>
+    cout &lt;&lt; <span class="str">"lowerBound(8)  = "</span> &lt;&lt; <span class="fn">lowerBound</span>(a, <span class="num">8</span>)  &lt;&lt; <span class="str">"\n"</span>; <span class="cmt">// 10</span>
+    cout &lt;&lt; <span class="str">"lowerBound(20) = "</span> &lt;&lt; <span class="fn">lowerBound</span>(a, <span class="num">20</span>) &lt;&lt; <span class="str">"\n"</span>; <span class="cmt">// 14</span>
+    cout &lt;&lt; <span class="str">"lowerBound(0)  = "</span> &lt;&lt; <span class="fn">lowerBound</span>(a, <span class="num">0</span>)  &lt;&lt; <span class="str">"\n"</span>; <span class="cmt">// 0</span>
+
+    <span class="kw">return</span> <span class="num">0</span>;
+}</code></pre>
+
+</body>
+</html>
