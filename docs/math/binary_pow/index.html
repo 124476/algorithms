@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>binary pow</title>
+  <link rel="icon" type="image/svg+xml" href="../../../favicon.svg" />
+  <link rel="stylesheet" href="../../../css/style.css" />
+</head>
+<body>
+  <a class="back-link" href="../index.html">back</a>
+
+  <header>
+    <h1>binary pow</h1>
+  </header>
+
+<pre><code><span class="kw">int</span> <span class="fn">pow</span>(<span class="kw">int</span> a, <span class="kw">int</span> n) {
+    <span class="kw">int</span> res = <span class="num">1</span>;
+    <span class="kw">while</span> (n &gt; <span class="num">0</span>) {
+        <span class="kw">if</span> (n % <span class="num">2</span> == <span class="num">1</span>)
+            res *= a;
+        a *= a;
+        n /= <span class="num">2</span>;
+    }
+
+    <span class="kw">return</span> res;
+}</code></pre>
+
+</body>
+</html>

@@ -70,14 +70,14 @@ coverage/
 *.test
 *.out
 
-# ===== C / C++ =====
+# Compiled binaries
+main
+*.out
+a.out
 *.o
 *.obj
-*.a
-*.lib
-*.so
-*.dylib
 *.exe
+*.bin
 
 # ===== Hugo / сборка сайта =====
 public/
