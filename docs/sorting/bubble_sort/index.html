@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>bubble sort</title>
+  <link rel="icon" type="image/svg+xml" href="../../../favicon.svg" />
+  <link rel="stylesheet" href="../../../css/style.css" />
+</head>
+<body>
+  <a class="back-link" href="../index.html">back</a>
+
+  <header>
+    <h1>bubble sort</h1>
+  </header>
+
+<pre><code><span class="cmt">// Bubble sort — O(n²).</span>
+
+<span class="kw">void</span> <span class="fn">bubbleSort</span>(vector&lt;<span class="kw">int</span>&gt;&amp; a) {
+    <span class="kw">int</span> n = (<span class="kw">int</span>)a.size();
+
+    <span class="kw">for</span> (<span class="kw">int</span> i = <span class="num">0</span>; i &lt; n - <span class="num">1</span>; ++i) {
+        <span class="kw">bool</span> swapped = <span class="kw">false</span>;
+
+        <span class="kw">for</span> (<span class="kw">int</span> j = <span class="num">0</span>; j &lt; n - <span class="num">1</span> - i; ++j) {
+            <span class="kw">if</span> (a[j] &gt; a[j + <span class="num">1</span>]) {
+                swap(a[j], a[j + <span class="num">1</span>]);
+                swapped = <span class="kw">true</span>;
+            }
+        }
+
+        <span class="kw">if</span> (!swapped) <span class="kw">break</span>;
+    }
+}</code></pre>
+
+</body>
+</html>

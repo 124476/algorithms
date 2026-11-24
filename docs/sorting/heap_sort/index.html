@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>heap sort</title>
+  <link rel="icon" type="image/svg+xml" href="../../../favicon.svg" />
+  <link rel="stylesheet" href="../../../css/style.css" />
+</head>
+<body>
+  <a class="back-link" href="../index.html">back</a>
+
+  <header>
+    <h1>heap sort</h1>
+  </header>
+
+<pre><code><span class="cmt">// Heap sort — O(n log n) гарантированно, O(1) памяти.
+// Строит max-heap, затем по одному вынимает максимум
+// (переставляет его в конец и восстанавливает кучу).</span>
+
+<span class="kw">void</span> <span class="fn">siftDown</span>(vector&lt;<span class="kw">int</span>&gt;&amp; a, <span class="kw">int</span> n, <span class="kw">int</span> i) {
+    <span class="kw">while</span> (<span class="kw">true</span>) {
+        <span class="kw">int</span> largest = i;
+        <span class="kw">int</span> l = <span class="num">2</span> * i + <span class="num">1</span>;
+        <span class="kw">int</span> r = <span class="num">2</span> * i + <span class="num">2</span>;
+
+        <span class="kw">if</span> (l &lt; n &amp;&amp; a[l] &gt; a[largest]) largest = l;
+        <span class="kw">if</span> (r &lt; n &amp;&amp; a[r] &gt; a[largest]) largest = r;
+
+        <span class="kw">if</span> (largest == i) <span class="kw">break</span>;
+
+        swap(a[i], a[largest]);
+        i = largest;
+    }
+}
+
+<span class="kw">void</span> <span class="fn">heapSort</span>(vector&lt;<span class="kw">int</span>&gt;&amp; a) {
+    <span class="kw">int</span> n = (<span class="kw">int</span>)a.size();
+
+    <span class="kw">for</span> (<span class="kw">int</span> i = n / <span class="num">2</span> - <span class="num">1</span>; i &gt;= <span class="num">0</span>; --i) {
+        <span class="fn">siftDown</span>(a, n, i);
+    }
+
+    <span class="kw">for</span> (<span class="kw">int</span> i = n - <span class="num">1</span>; i &gt; <span class="num">0</span>; --i) {
+        swap(a[<span class="num">0</span>], a[i]);
+        <span class="fn">siftDown</span>(a, i, <span class="num">0</span>);
+    }
+}</code></pre>
+
+</body>
+</html>

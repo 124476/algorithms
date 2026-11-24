@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>counting sort</title>
+  <link rel="icon" type="image/svg+xml" href="../../../favicon.svg" />
+  <link rel="stylesheet" href="../../../css/style.css" />
+</head>
+<body>
+  <a class="back-link" href="../index.html">back</a>
+
+  <header>
+    <h1>counting sort</h1>
+  </header>
+
+<pre><code><span class="cmt">// Counting sort — O(n + k), где k — диапазон значений.
+// Работает только для целых неотрицательных (или со сдвигом).
+// Не сравнивает элементы — считает количество каждого значения.</span>
+
+vector&lt;<span class="kw">int</span>&gt; <span class="fn">countingSort</span>(<span class="kw">const</span> vector&lt;<span class="kw">int</span>&gt;&amp; a) {
+    <span class="kw">if</span> (a.empty()) <span class="kw">return</span> {};
+
+    <span class="kw">int</span> mx = *max_element(a.begin(), a.end());
+    vector&lt;<span class="kw">int</span>&gt; count(mx + <span class="num">1</span>, <span class="num">0</span>);
+
+    <span class="kw">for</span> (<span class="kw">int</span> x : a) ++count[x];
+
+    vector&lt;<span class="kw">int</span>&gt; res;
+    res.reserve(a.size());
+
+    <span class="kw">for</span> (<span class="kw">int</span> v = <span class="num">0</span>; v &lt;= mx; ++v) {
+        <span class="kw">while</span> (count[v]-- &gt; <span class="num">0</span>) {
+            res.push_back(v);
+        }
+    }
+
+    <span class="kw">return</span> res;
+}</code></pre>
+
+</body>
+</html>

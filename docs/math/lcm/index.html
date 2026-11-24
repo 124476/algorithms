@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>lcm</title>
+  <link rel="icon" type="image/svg+xml" href="../../../favicon.svg" />
+  <link rel="stylesheet" href="../../../css/style.css" />
+</head>
+<body>
+  <a class="back-link" href="../index.html">back</a>
+
+  <header>
+    <h1>lcm</h1>
+  </header>
+
+<pre><code><span class="cmt">// НОК — наименьшее общее кратное.
+// lcm(a, b) = a / gcd(a, b) * b</span>
+
+<span class="kw">int</span> <span class="fn">gcd</span>(<span class="kw">int</span> a, <span class="kw">int</span> b) {
+    <span class="kw">while</span> (b) {
+        a %= b;
+        swap(a, b);
+    }
+    <span class="kw">return</span> a;
+}
+
+<span class="kw">int</span> <span class="fn">lcm</span>(<span class="kw">int</span> a, <span class="kw">int</span> b) {
+    <span class="kw">return</span> a / <span class="fn">gcd</span>(a, b) * b;
+}</code></pre>
+
+</body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>insertion sort</title>
+  <link rel="icon" type="image/svg+xml" href="../../../favicon.svg" />
+  <link rel="stylesheet" href="../../../css/style.css" />
+</head>
+<body>
+  <a class="back-link" href="../index.html">back</a>
+
+  <header>
+    <h1>insertion sort</h1>
+  </header>
+
+<pre><code><span class="cmt">// Insertion sort — O(n²), но O(n) на почти отсортированных данных.
+// Строит отсортированный массив по одному элементу за раз,
+// вставляя каждый новый элемент на его место.</span>
+
+<span class="kw">void</span> <span class="fn">insertionSort</span>(vector&lt;<span class="kw">int</span>&gt;&amp; a) {
+    <span class="kw">int</span> n = (<span class="kw">int</span>)a.size();
+
+    <span class="kw">for</span> (<span class="kw">int</span> i = <span class="num">1</span>; i &lt; n; ++i) {
+        <span class="kw">int</span> key = a[i];
+        <span class="kw">int</span> j = i - <span class="num">1</span>;
+
+        <span class="kw">while</span> (j &gt;= <span class="num">0</span> &amp;&amp; a[j] &gt; key) {
+            a[j + <span class="num">1</span>] = a[j];
+            --j;
+        }
+
+        a[j + <span class="num">1</span>] = key;
+    }
+}</code></pre>
+
+</body>
+</html>

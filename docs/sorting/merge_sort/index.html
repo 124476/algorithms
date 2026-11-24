@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>merge sort</title>
+  <link rel="icon" type="image/svg+xml" href="../../../favicon.svg" />
+  <link rel="stylesheet" href="../../../css/style.css" />
+</head>
+<body>
+  <a class="back-link" href="../index.html">back</a>
+
+  <header>
+    <h1>merge sort</h1>
+  </header>
+
+<pre><code><span class="cmt">// Merge sort — O(n log n), стабильный, O(n) памяти.
+// Делит массив пополам, сортирует половины рекурсивно,
+// затем сливает две отсортированные половины.</span>
+
+<span class="kw">void</span> <span class="fn">merge</span>(vector&lt;<span class="kw">int</span>&gt;&amp; a, <span class="kw">int</span> l, <span class="kw">int</span> m, <span class="kw">int</span> r) {
+    vector&lt;<span class="kw">int</span>&gt; left(a.begin() + l, a.begin() + m + <span class="num">1</span>);
+    vector&lt;<span class="kw">int</span>&gt; right(a.begin() + m + <span class="num">1</span>, a.begin() + r + <span class="num">1</span>);
+
+    <span class="kw">int</span> i = <span class="num">0</span>, j = <span class="num">0</span>, k = l;
+
+    <span class="kw">while</span> (i &lt; (<span class="kw">int</span>)left.size() &amp;&amp; j &lt; (<span class="kw">int</span>)right.size()) {
+        <span class="kw">if</span> (left[i] &lt;= right[j]) a[k++] = left[i++];
+        <span class="kw">else</span>                       a[k++] = right[j++];
+    }
+
+    <span class="kw">while</span> (i &lt; (<span class="kw">int</span>)left.size())  a[k++] = left[i++];
+    <span class="kw">while</span> (j &lt; (<span class="kw">int</span>)right.size()) a[k++] = right[j++];
+}
+
+<span class="kw">void</span> <span class="fn">mergeSort</span>(vector&lt;<span class="kw">int</span>&gt;&amp; a, <span class="kw">int</span> l, <span class="kw">int</span> r) {
+    <span class="kw">if</span> (l &gt;= r) <span class="kw">return</span>;
+
+    <span class="kw">int</span> m = l + (r - l) / <span class="num">2</span>;
+    <span class="fn">mergeSort</span>(a, l, m);
+    <span class="fn">mergeSort</span>(a, m + <span class="num">1</span>, r);
+    <span class="fn">merge</span>(a, l, m, r);
+}</code></pre>
+
+</body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>quick sort</title>
+  <link rel="icon" type="image/svg+xml" href="../../../favicon.svg" />
+  <link rel="stylesheet" href="../../../css/style.css" />
+</head>
+<body>
+  <a class="back-link" href="../index.html">back</a>
+
+  <header>
+    <h1>quick sort</h1>
+  </header>
+
+<pre><code><span class="cmt">// Quick sort — O(n log n) в среднем, O(n²) в худшем.
+// Выбирает опорный элемент (pivot), разбивает массив на две части:
+// меньше pivot и больше pivot, затем рекурсивно сортирует обе.</span>
+
+<span class="kw">int</span> <span class="fn">partition</span>(vector&lt;<span class="kw">int</span>&gt;&amp; a, <span class="kw">int</span> l, <span class="kw">int</span> r) {
+    <span class="kw">int</span> pivot = a[r];
+    <span class="kw">int</span> i = l - <span class="num">1</span>;
+
+    <span class="kw">for</span> (<span class="kw">int</span> j = l; j &lt; r; ++j) {
+        <span class="kw">if</span> (a[j] &lt;= pivot) {
+            ++i;
+            swap(a[i], a[j]);
+        }
+    }
+
+    swap(a[i + <span class="num">1</span>], a[r]);
+    <span class="kw">return</span> i + <span class="num">1</span>;
+}
+
+<span class="kw">void</span> <span class="fn">quickSort</span>(vector&lt;<span class="kw">int</span>&gt;&amp; a, <span class="kw">int</span> l, <span class="kw">int</span> r) {
+    <span class="kw">if</span> (l &gt;= r) <span class="kw">return</span>;
+
+    <span class="kw">int</span> p = <span class="fn">partition</span>(a, l, r);
+    <span class="fn">quickSort</span>(a, l, p - <span class="num">1</span>);
+    <span class="fn">quickSort</span>(a, p + <span class="num">1</span>, r);
+}</code></pre>
+
+</body>
+</html>

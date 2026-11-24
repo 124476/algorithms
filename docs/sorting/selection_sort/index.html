@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>selection sort</title>
+  <link rel="icon" type="image/svg+xml" href="../../../favicon.svg" />
+  <link rel="stylesheet" href="../../../css/style.css" />
+</head>
+<body>
+  <a class="back-link" href="../index.html">back</a>
+
+  <header>
+    <h1>selection sort</h1>
+  </header>
+
+<pre><code><span class="cmt">// Selection sort — O(n²).
+// На каждом шаге находит минимум в неотсортированной части
+// и ставит его в начало этой части.</span>
+
+<span class="kw">void</span> <span class="fn">selectionSort</span>(vector&lt;<span class="kw">int</span>&gt;&amp; a) {
+    <span class="kw">int</span> n = (<span class="kw">int</span>)a.size();
+
+    <span class="kw">for</span> (<span class="kw">int</span> i = <span class="num">0</span>; i &lt; n - <span class="num">1</span>; ++i) {
+        <span class="kw">int</span> minIdx = i;
+
+        <span class="kw">for</span> (<span class="kw">int</span> j = i + <span class="num">1</span>; j &lt; n; ++j) {
+            <span class="kw">if</span> (a[j] &lt; a[minIdx]) {
+                minIdx = j;
+            }
+        }
+
+        <span class="kw">if</span> (minIdx != i) swap(a[i], a[minIdx]);
+    }
+}</code></pre>
+
+</body>
+</html>
