@@ -11,7 +11,7 @@ int lowerBound(const vector<int>& a, int target) {
         else r = md;
     }
     return l;
-}
+}   
 
 int upperBound(const vector<int>& a, int target) {
     int l = 0, r = (int)a.size();

@@ -1,0 +1,200 @@
+/* ===== Переменные ===== */
+:root {
+  --bg: #0d1117;
+  --panel: #161b22;
+  --border: #30363d;
+  --text: #e6edf3;
+  --muted: #8b949e;
+  --accent: #58a6ff;
+  --code-bg: #0b0f14;
+}
+
+/* ===== Сброс ===== */
+* { box-sizing: border-box; }
+
+/* ===== База ===== */
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+  /* скрыть скроллбар (уберите блок, если нужен видимый) */
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+html::-webkit-scrollbar { width: 0; height: 0; display: none; }
+
+body {
+  font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 2rem 1rem 4rem;
+  line-height: 1.6;
+  background: var(--bg);
+  color: var(--text);
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+body::-webkit-scrollbar { width: 0; height: 0; display: none; }
+
+a {
+  color: var(--accent);
+  text-decoration: none;
+  -webkit-tap-highlight-color: rgba(88, 166, 255, .15);
+}
+
+/* ===== Кнопка "назад" ===== */
+.back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: .35rem;
+  padding: .4rem .8rem;
+  margin-bottom: 2rem;
+  font-size: .9rem;
+  color: var(--muted);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  transition: all .15s ease;
+}
+.back-link:hover {
+  color: var(--text);
+  border-color: var(--accent);
+  background: var(--panel);
+}
+
+/* ===== Заголовок ===== */
+header {
+  margin-bottom: 2.5rem;
+  text-align: center;
+}
+header h1 {
+  font-size: clamp(1.8rem, 4vw, 2.5rem);
+  margin: 0 0 .5rem;
+}
+header p {
+  color: var(--muted);
+  margin: 0;
+  font-size: 1.05rem;
+}
+
+/* ===== Сетка карточек ===== */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.25rem;
+}
+.card {
+  display: flex;
+  flex-direction: column;
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 1.5rem;
+  text-decoration: none;
+  color: inherit;
+  transition: transform .15s ease, border-color .15s ease, box-shadow .15s ease;
+}
+.card:hover {
+  transform: translateY(-4px);
+  border-color: var(--accent);
+  box-shadow: 0 8px 24px rgba(88, 166, 255, .1);
+}
+.card h2 {
+  margin: 0 0 .5rem;
+  font-size: 1.25rem;
+  color: var(--accent);
+}
+.card p {
+  margin: 0;
+  font-size: .9rem;
+  color: var(--muted);
+  flex-grow: 1;
+}
+.card .meta {
+  margin-top: 1.25rem;
+  padding-top: .75rem;
+  border-top: 1px solid var(--border);
+  font-size: .8rem;
+  color: var(--muted);
+  display: flex;
+  justify-content: space-between;
+}
+
+/* ===== Блок кода ===== */
+pre {
+  background: var(--code-bg);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 1rem 1.25rem;
+  overflow-x: auto;
+  font-size: .85rem;
+  line-height: 1.5;
+  margin: 0;
+  -webkit-overflow-scrolling: touch;
+}
+pre code {
+  font-family: ui-monospace, "SF Mono", Consolas, monospace;
+  color: var(--text);
+}
+.kw  { color: #ff7b72; }
+.str { color: #a5d6ff; }
+.fn  { color: #d2a8ff; }
+.cmt { color: #8b949e; font-style: italic; }
+.num { color: #79c0ff; }
+
+/* ============================================
+   Мобильная ориентация
+   ============================================ */
+
+/* Планшеты и крупные телефоны */
+@media (max-width: 640px) {
+  body {
+    padding: 1.25rem .75rem 2.5rem;
+  }
+  header {
+    margin-bottom: 1.75rem;
+  }
+  header p {
+    font-size: .95rem;
+  }
+  .grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  .card {
+    padding: 1.25rem;
+  }
+  .back-link {
+    margin-bottom: 1.5rem;
+    padding: .35rem .7rem;
+    font-size: .85rem;
+  }
+  pre {
+    font-size: .75rem;
+    padding: .85rem 1rem;
+    border-radius: 6px;
+  }
+}
+
+/* Узкие телефоны (iPhone SE и меньше) */
+@media (max-width: 380px) {
+  body {
+    padding: 1rem .6rem 2rem;
+  }
+  header h1 {
+    font-size: 1.5rem;
+  }
+  pre {
+    font-size: .7rem;
+    padding: .7rem .8rem;
+  }
+  .card {
+    padding: 1rem;
+  }
+}
+
+/* Горизонтальная ориентация на телефонах — код не должен занимать всю высоту */
+@media (orientation: landscape) and (max-height: 500px) {
+  pre {
+    max-height: 60vh;
+    overflow-y: auto;
+  }
+}
